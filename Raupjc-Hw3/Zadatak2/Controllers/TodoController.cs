@@ -33,7 +33,7 @@ namespace Zadatak2.Controllers
             {
                 int daysToDeadline = (int) (item.DateDue - DateTime.Now).TotalDays;
 
-                TodoViewModel viewModel = new TodoViewModel(item.Text, item.DateDue, daysToDeadline);
+                TodoViewModel viewModel = new TodoViewModel(item.Id, item.Text, item.DateDue, daysToDeadline);
                 todoViewModels.Add(viewModel);
             }
 
@@ -61,7 +61,39 @@ namespace Zadatak2.Controllers
 
         public async Task<IActionResult> Completed()
         {
-            return null;
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            List<TodoItem> todoItems = _repository.GetCompleted(new Guid(user.Id));
+            List<TodoViewModel> todoViewModels = new List<TodoViewModel>();
+            foreach (var item in todoItems)
+            {
+
+                TodoViewModel viewModel = new TodoViewModel(item.Id, item.Text, item.DateCompleted);
+                todoViewModels.Add(viewModel);
+            }
+
+            CompletedViewModel indexViewModel = new CompletedViewModel(todoViewModels);
+
+            return View(indexViewModel);
+        }
+
+        [HttpGet("MarkAsCompleted/{itemId}")]
+        public async Task<IActionResult> MarkAsCompleted(Guid itemId)
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            Guid userId = new Guid(user.Id);
+
+            _repository.MarkAsCompleted(itemId, userId);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("RemoveFromCompleted/{itemId}")]
+        public async Task<IActionResult> RemoveFromCompleted(Guid itemId)
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            Guid userId = new Guid(user.Id);
+
+            _repository.Remove(itemId, userId);
+            return RedirectToAction("Completed");
         }
     }
 }

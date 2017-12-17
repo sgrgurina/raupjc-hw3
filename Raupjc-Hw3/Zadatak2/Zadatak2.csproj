@@ -36,4 +36,8 @@
     <ProjectReference Include="..\Zadatak1\Zadatak1.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Todo\" />
+  </ItemGroup>
+
 </Project>

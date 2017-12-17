@@ -7,13 +7,11 @@ namespace Zadatak2.Models.ManageViewModels
 {
     public class CompletedViewModel
     {
-        public string Text { get; set; }
-        public DateTime DateCompleted { get; set; }
+        public List<TodoViewModel> TodoViewModels;
 
-        public CompletedViewModel(string text, DateTime dateCompleted)
+        public CompletedViewModel(List<TodoViewModel> todoViewModels)
         {
-            Text = text;
-            DateCompleted = dateCompleted;
+            TodoViewModels = todoViewModels;
         }
     }
 }

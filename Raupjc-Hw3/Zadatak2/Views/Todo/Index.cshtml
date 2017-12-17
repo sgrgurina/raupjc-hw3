@@ -7,17 +7,20 @@
 <html>
 <body>
 <div>
-    <h2>Todo</h2>
+    <h1>Todo</h1>
     <a asp-area="" asp-controller="todo" asp-action="add">Add new todo</a>
     &nbsp;
     <a asp-area="" asp-controller="todo" asp-action="completed">See completed todos</a>
+    <br/>
 </div>
 @foreach (var todo in Model.TodoViewModels)
 {
-    @todo.Text  (za)
-    @todo.DaysToDeadline<br>
-    @todo.DueDate
-    <br/>
+    <p>
+        <b>@todo.Text</b>
+        @todo.DaysToDeadline<br />
+        @todo.DueDate<br />
+        <a asp-controller="todo" asp-action="MarkAsCompleted" , asp-route-itemId="@todo.Id">Mark As Completed</a><br />
+    </p>
 }
 
 

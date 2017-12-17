@@ -1,0 +1,23 @@
+﻿@model Zadatak2.Models.ManageViewModels.CompletedViewModel
+
+@{
+    ViewBag.Title = "Completed Todos";
+    Layout = "_Layout";
+}
+
+<html>
+<body>
+    <h1>Completed Todos</h1>
+@foreach (var todo in Model.TodoViewModels)
+{
+    <p>
+        <b>@todo.Text</b><br/>
+        @todo.DateCompleted<br/>
+        <a asp-controller="todo" asp-action="RemoveFromCompleted" , asp-route-itemId="@todo.Id">Remove From Completed</a><br/>
+    </p>
+}
+
+
+</body>
+
+</html>

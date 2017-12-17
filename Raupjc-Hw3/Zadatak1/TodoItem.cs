@@ -38,6 +38,7 @@ namespace Zadatak1
         protected bool Equals(TodoItem other)
         {
             return Id.Equals(other.Id);
+            
         }
 
         public override bool Equals(object obj)
