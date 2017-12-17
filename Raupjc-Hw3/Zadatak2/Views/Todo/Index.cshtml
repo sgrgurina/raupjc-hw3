@@ -16,8 +16,7 @@
 @foreach (var todo in Model.TodoViewModels)
 {
     <p>
-        <b>@todo.Text</b>
-        @todo.DaysToDeadline<br />
+        <b>@todo.Text</b> &nbsp; (za @todo.DaysToDeadline dana!)<br />
         @todo.DueDate<br />
         <a asp-controller="todo" asp-action="MarkAsCompleted" , asp-route-itemId="@todo.Id">Mark As Completed</a><br />
     </p>
