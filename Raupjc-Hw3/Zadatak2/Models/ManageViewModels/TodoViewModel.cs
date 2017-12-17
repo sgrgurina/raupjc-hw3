@@ -9,7 +9,7 @@ namespace Zadatak2.Models.ManageViewModels
     {
         public string Text { get; set; }
         public DateTime DueDate { get; set; }
-        public int DaysToDeadline { get; set; }
+        public int? DaysToDeadline { get; set; }
 
         public TodoViewModel(string text, DateTime dueDate, int daysToDeadline)
         {

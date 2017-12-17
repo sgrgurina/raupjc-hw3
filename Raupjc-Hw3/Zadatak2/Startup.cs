@@ -31,7 +31,7 @@ namespace Zadatak2
 
             services.AddScoped((s) =>
             {
-                return new TodoDbContext(Configuration[" ConnectionStrings : DefaultConnection "]);
+                return new TodoDbContext(Configuration.GetConnectionString("DefaultConnection"));
             });
 
 

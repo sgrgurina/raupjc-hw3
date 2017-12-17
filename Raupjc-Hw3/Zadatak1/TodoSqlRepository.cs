@@ -91,7 +91,7 @@ namespace Zadatak1
 
         public List<TodoItem> GetActive(Guid userId)
         {
-            List<TodoItem> activeTodoItems = _context.TodoItems.Where(i => i.UserId == userId && i.DateCompleted == null).ToList();
+            List<TodoItem> activeTodoItems = _context.TodoItems.Where(i => (i.UserId == userId) && (i.DateCompleted == null)).ToList();
             return activeTodoItems;
         }
 

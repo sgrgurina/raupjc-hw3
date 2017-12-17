@@ -1,0 +1,26 @@
+﻿@model TodoIndexViewModel
+
+@{
+    ViewBag.Title = "Todo";
+    Layout = "_Layout";
+}
+<html>
+<body>
+<div>
+    <h2>Todo</h2>
+    <a asp-area="" asp-controller="todo" asp-action="add">Add new todo</a>
+    &nbsp;
+    <a asp-area="" asp-controller="todo" asp-action="completed">See completed todos</a>
+</div>
+@foreach (var todo in Model.TodoViewModels)
+{
+    @todo.Text  (za)
+    @todo.DaysToDeadline<br>
+    @todo.DueDate
+    <br/>
+}
+
+
+</body>
+
+</html>

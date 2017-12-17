@@ -9,14 +9,14 @@ namespace Zadatak1
         public Guid Id { get; set; }
         public string Text { get; set; }
 
-        public bool IsCompleted => DateCompleted.HasValue;
+        public bool IsCompleted() { return DateCompleted.HasValue; }
 
         public DateTime DateCreated { get; set; }
         public DateTime? DateCompleted { get; set; }
 
         public Guid UserId { get; set; }
         public List<TodoLabel> Labels { get; set; }
-        public DateTime? DateDue { get; set; }
+        public DateTime DateDue { get; set; }
 
 
 
@@ -55,7 +55,7 @@ namespace Zadatak1
 
         public bool MarkAsCompleted()
         {
-            if (!IsCompleted)
+            if (!IsCompleted())
             {
                 DateCompleted = DateTime.Now;
                 return true;
