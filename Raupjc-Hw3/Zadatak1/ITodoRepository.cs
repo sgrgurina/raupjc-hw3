@@ -12,13 +12,27 @@ namespace Zadatak1
         /// <param name =" userId ">Id of the user that is trying to fetch the data</ param >
         /// <returns > TodoItem if found , null otherwise </ returns > 
         TodoItem Get(Guid todoId, Guid userId);
-        
+
+        /// <summary >
+        /// Gets TodoLabel for a given value.
+        /// </ summary >
+        /// <param name =" value "> Todo label value </ param >
+        /// <returns > TodoLabel if found , null otherwise </ returns > 
+        TodoLabel GetLabel(string value);
+
         /// <summary >
         /// Adds new TodoItem object in database .
         /// If object with the same id already exists ,
         /// method should throw DuplicateTodoItemException with the message " duplicate id: {id }".
         /// </ summary >
         void Add(TodoItem todoItem);
+
+        /// <summary >
+        /// Adds new TodoLabel object in database.
+        /// If object with the same id already exists ,
+        /// method should throw DuplicateTodoLabelException with the message " duplicate label id: {id }".
+        /// </ summary >
+        void AddLabel(TodoLabel todoLabel);
 
         /// <summary >
         /// Tries to remove a TodoItem with given id from the database . Throw TodoAccessDeniedException with appropriate message if user is not the owner of the Todo item

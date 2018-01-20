@@ -12,7 +12,8 @@ namespace Zadatak2.Models.ManageViewModels
         public DateTime DueDate { get; set; }
         public DateTime? DateCompleted { get; set; } 
         public int? DaysToDeadline { get; set; }
-
+        
+        //for completed todo items
         public TodoViewModel(Guid id, string text, DateTime? dateCompleted)
         {
             Id = id;
@@ -20,6 +21,7 @@ namespace Zadatak2.Models.ManageViewModels
             DateCompleted = dateCompleted;
         }
 
+        //for active todo items
         public TodoViewModel(Guid id, string text, DateTime dueDate, int daysToDeadline)
         {
             Id = id;

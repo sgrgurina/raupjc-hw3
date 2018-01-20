@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DuplicateTodoItemException.cs" />
+    <Compile Include="DuplicateTodoLabelException.cs" />
     <Compile Include="ITodoRepository.cs" />
     <Compile Include="TodoAccessDeniedException.cs" />
     <Compile Include="TodoDbContext.cs" />

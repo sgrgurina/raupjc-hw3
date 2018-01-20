@@ -27,6 +27,12 @@ namespace Zadatak1
             LabelTodoItems = new List<TodoItem>();
         }
 
+        public TodoLabel()
+        {
+            // entity framework needs this one
+            // not for use :)
+        }
+
         protected bool Equals(TodoLabel other)
         {
             return Id.Equals(other.Id);

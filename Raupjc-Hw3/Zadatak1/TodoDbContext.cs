@@ -23,6 +23,7 @@ namespace Zadatak1
             modelBuilder.Entity<TodoItem>().Property(i => i.DateCreated).IsRequired();
             modelBuilder.Entity<TodoItem>().Property(i => i.Text).IsRequired();
             modelBuilder.Entity<TodoItem>().Property(i => i.UserId).IsRequired();
+            modelBuilder.Entity<TodoItem>().Property(i => i.UserId).IsRequired();
             modelBuilder.Entity<TodoItem>().HasMany(i => i.Labels).WithMany(l => l.LabelTodoItems);
 
             modelBuilder.Entity<TodoLabel>().HasKey(l => l.Id);

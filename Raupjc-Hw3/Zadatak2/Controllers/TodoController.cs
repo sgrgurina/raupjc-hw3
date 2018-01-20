@@ -55,6 +55,27 @@ namespace Zadatak2.Controllers
 
             TodoItem newItem = new TodoItem(model.Text, userId);
             newItem.DateDue = (DateTime) model.DateDue;
+            string[] labelValues = model.Labels.Split(',');
+            foreach (var labelValue in labelValues)
+            {
+                labelValue.Trim();
+                //if it isnt empty or null
+                if (!string.IsNullOrEmpty(labelValue))
+                {
+                    TodoLabel existingLabel = _repository.GetLabel(labelValue);
+                    if (existingLabel == null)
+                    {
+                        TodoLabel newLabel = new TodoLabel(labelValue);
+                        _repository.AddLabel(newLabel);
+                        newItem.Labels.Add(newLabel);
+                    }
+                    else
+                    {
+                        newItem.Labels.Add(existingLabel);
+                    }
+                }
+            }
+
             _repository.Add(newItem);
             return RedirectToAction("Index");
         }
@@ -66,7 +87,6 @@ namespace Zadatak2.Controllers
             List<TodoViewModel> todoViewModels = new List<TodoViewModel>();
             foreach (var item in todoItems)
             {
-
                 TodoViewModel viewModel = new TodoViewModel(item.Id, item.Text, item.DateCompleted);
                 todoViewModels.Add(viewModel);
             }
