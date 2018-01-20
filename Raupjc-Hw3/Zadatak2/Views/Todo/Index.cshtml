@@ -19,7 +19,7 @@
 {
     <p>
         <b>@todo.Text</b> &nbsp; <font color="red">(za @todo.DaysToDeadline dana!)</font><br />
-        @todo.DueDate<br />
+        @todo.DueDate.Value.ToString("dd/MMMM/yyyy")<br />
         <b><a asp-controller="todo" asp-action="MarkAsCompleted" , asp-route-itemId="@todo.Id">Mark As Completed</a></b><br />
     </p>
 }

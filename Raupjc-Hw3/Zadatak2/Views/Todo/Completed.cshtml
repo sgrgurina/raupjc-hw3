@@ -12,7 +12,7 @@
 {
     <p>
         <b>@todo.Text</b><br/>
-        @todo.DateCompleted<br/>
+        @todo.DateCompleted.Value.ToString("dd/MMMM/yyyy")<br/>
         <b><a asp-controller="todo" asp-action="RemoveFromCompleted" , asp-route-itemId="@todo.Id">Remove From Completed</a><br /></b>
     </p>
 }
