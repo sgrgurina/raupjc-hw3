@@ -28,7 +28,7 @@ namespace Zadatak2
                         .Enrich.FromLogContext()
                         .WriteTo.MSSqlServer(
                             connectionString: cnnstr,
-                            tableName: "Errors",
+                            tableName: "ErrorLogs",
                             autoCreateSqlTable: true);
 
                     if (context.HostingEnvironment.IsDevelopment())

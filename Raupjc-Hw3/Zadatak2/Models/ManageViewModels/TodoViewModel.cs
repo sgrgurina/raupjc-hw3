@@ -9,7 +9,7 @@ namespace Zadatak2.Models.ManageViewModels
     {
         public Guid Id { get; set; }
         public string Text { get; set; }
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
         public DateTime? DateCompleted { get; set; } 
         public int? DaysToDeadline { get; set; }
         
@@ -22,7 +22,7 @@ namespace Zadatak2.Models.ManageViewModels
         }
 
         //for active todo items
-        public TodoViewModel(Guid id, string text, DateTime dueDate, int daysToDeadline)
+        public TodoViewModel(Guid id, string text, DateTime? dueDate, int daysToDeadline)
         {
             Id = id;
             Text = text;

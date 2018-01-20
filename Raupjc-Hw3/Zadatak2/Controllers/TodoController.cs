@@ -31,7 +31,15 @@ namespace Zadatak2.Controllers
             List<TodoViewModel> todoViewModels = new List<TodoViewModel>();
             foreach (var item in todoItems)
             {
-                int daysToDeadline = (int) (item.DateDue - DateTime.Now).TotalDays;
+                int daysToDeadline;
+                if (item.DateDue != null)
+                {
+                    daysToDeadline = (int) ((DateTime) item.DateDue - DateTime.Now).TotalDays;
+                }
+                else
+                {
+                    daysToDeadline = 0;
+                }
 
                 TodoViewModel viewModel = new TodoViewModel(item.Id, item.Text, item.DateDue, daysToDeadline);
                 todoViewModels.Add(viewModel);
@@ -54,24 +62,35 @@ namespace Zadatak2.Controllers
             Guid userId = new Guid(user.Id);
 
             TodoItem newItem = new TodoItem(model.Text, userId);
-            newItem.DateDue = (DateTime) model.DateDue;
-            string[] labelValues = model.Labels.Split(',');
-            foreach (var labelValue in labelValues)
+            if (model.DateDue != null)
             {
-                labelValue.Trim();
-                //if it isnt empty or null
-                if (!string.IsNullOrEmpty(labelValue))
+                newItem.DateDue = (DateTime) model.DateDue;
+            }
+            else
+            {
+                newItem.DateDue = null;
+            }
+            if (!string.IsNullOrWhiteSpace(model.Labels))
+            {
+                string[] labelValues = model.Labels.Split(',');
+                foreach (var labelValue in labelValues)
                 {
-                    TodoLabel existingLabel = _repository.GetLabel(labelValue);
-                    if (existingLabel == null)
+                    string trimmedLabelValue = labelValue.Trim();
+
+                    //if it isnt empty or null
+                    if (!string.IsNullOrWhiteSpace(trimmedLabelValue))
                     {
-                        TodoLabel newLabel = new TodoLabel(labelValue);
-                        _repository.AddLabel(newLabel);
-                        newItem.Labels.Add(newLabel);
-                    }
-                    else
-                    {
-                        newItem.Labels.Add(existingLabel);
+                        TodoLabel existingLabel = _repository.GetLabel(trimmedLabelValue);
+                        if (existingLabel == null)
+                        {
+                            TodoLabel newLabel = new TodoLabel(trimmedLabelValue);
+                            _repository.AddLabel(newLabel);
+                            newItem.Labels.Add(newLabel);
+                        }
+                        else
+                        {
+                            newItem.Labels.Add(existingLabel);
+                        }
                     }
                 }
             }

@@ -16,7 +16,7 @@ namespace Zadatak1
 
         public Guid UserId { get; set; }
         public List<TodoLabel> Labels { get; set; }
-        public DateTime DateDue { get; set; }
+        public DateTime? DateDue { get; set; }
 
 
 
